@@ -45,6 +45,22 @@ bool GetMove(bool player,char table[][3]) {
 	return true;
 }
 
+	//verifica daca cineva a castigat
+bool CheckForWin(char table[][3]) {
+	//verificam pe linii
+	for (int i = 0; i < 3; i++) {
+		if ((table[i][0] != ' ') && (table[i][0] == table[i][1]) && (table[i][1] == table[i][2])) return true;
+	}
+	//verificam pe coloane
+	for (int i = 0; i < 3; i++) {
+		if ((table[0][i] != ' ') && (table[0][i] == table[1][i]) && (table[1][i] == table[2][i])) return true;
+	}
+	//verificam diagonalele
+	if ((table[0][0] != ' ') && (table[0][0] == table[1][1]) && (table[1][1] == table[2][2])) return true;
+	if ((table[2][0] != ' ') && (table[2][0] == table[1][1]) && (table[1][1] == table[0][2])) return true;
+	return false;
+
+}
 	//verifica daca tabla este full
 bool CheckForFull(char table[][3]) {
 	for (int i = 0; i < 3; i++) {
@@ -192,7 +208,8 @@ int main() {
 					if (!move) printf("Pozitia este ocupata sau invalida!\n");
 				}
 				full = CheckForFull(board);
-                if (full && ! win) {
+             win = CheckForWin(board);
+				if (full && ! win) {
 					PrintBoard(board);
 					printf("Remiza!\nDaca doriti sa continuati introduceti 1, daca nu orice altceva\n");
 					int quit = 0;
@@ -244,7 +261,7 @@ int main() {
 					}
 				}
 				full = CheckForFull(board);
-
+				win = CheckForWin(board);
 				if (full && !win) {
 					PrintBoard(board);
 					printf("Remiza!\nDaca doriti sa continuati introduceti 1, daca nu orice altceva\n");
