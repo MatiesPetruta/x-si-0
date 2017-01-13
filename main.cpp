@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 using namespace std;
@@ -61,6 +62,7 @@ bool CheckForWin(char table[][3]) {
 	return false;
 
 }
+
 	//verifica daca tabla este full
 bool CheckForFull(char table[][3]) {
 	for (int i = 0; i < 3; i++) {
@@ -208,7 +210,7 @@ int main() {
 					if (!move) printf("Pozitia este ocupata sau invalida!\n");
 				}
 				full = CheckForFull(board);
-             win = CheckForWin(board);
+				win = CheckForWin(board);
 				if (full && ! win) {
 					PrintBoard(board);
 					printf("Remiza!\nDaca doriti sa continuati introduceti 1, daca nu orice altceva\n");
@@ -287,3 +289,4 @@ int main() {
 
 
 }
+
