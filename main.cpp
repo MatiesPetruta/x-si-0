@@ -234,6 +234,9 @@ int main() {
 
 	//player vs AI
 	if (noOfPlayers == 1) {
+		unsigned int hardLvl = 1;
+		printf("Selectati nivelul.\n\tusor - 1\n\tgreu - altceva\n");
+		scanf("%d", &hardLvl);
 		p1Score = 0;
 		p2Score = 0;
 		bool exit = false;
@@ -253,14 +256,18 @@ int main() {
 					}
 				}
 				else {
-					if (!AiCheckMove(board, 2, 'X')) {
-						if (!AiCheckMove(board, 2, '0')) {
-							if (!AiCheckMove(board, 1, 'X')) {
-								printf("\n\t\t\tCaut random!\n");
-								AiRandom(board);
+					// greu
+					if (hardLvl > 1) {
+						if (!AiCheckMove(board, 2, 'X')) {
+							if (!AiCheckMove(board, 2, '0')) {
+								if (!AiCheckMove(board, 1, 'X')) {
+									printf("\n\t\t\tCaut random!\n");
+									AiRandom(board);
+								}
 							}
 						}
 					}
+					else AiRandom(board);
 				}
 				full = CheckForFull(board);
 				win = CheckForWin(board);
@@ -289,4 +296,3 @@ int main() {
 
 
 }
-
